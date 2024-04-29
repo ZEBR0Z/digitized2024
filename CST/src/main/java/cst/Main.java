@@ -16,6 +16,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 @RestController
@@ -23,22 +24,23 @@ import java.util.function.Consumer;
 public class Main {
 
     public JSONArray users = new JSONArray().put(createUser("user", 10));
-    public final HashMap<String, User> userObject = new HashMap<>();
+    public final ConcurrentHashMap<String, User> userObject = new ConcurrentHashMap<>();
 
     public String message = users.toString();
     public RandomString randomString = new RandomString(32);
 
     public String redirect = "http://localhost:8080/scores";
 
-    public String url = "http://localhost:8080/digitized2024";
+    public String mainPage = "http://localhost:8080/digitized2024";
 
 
     public HashMap<String, Integer> flags = new HashMap<>();
 
+    public ConcurrentHashMap<String, String> userMap = new ConcurrentHashMap<>();
 
 
     public record LoginRequest(String username, String password) {}
-
+    public record SubmitFlag(String flagName) {}
     /**
      *
      * @param payload
@@ -75,7 +77,8 @@ public class Main {
                             //invalid password
                         }
                     } else {
-                        String sessionToken = randomString.nextString();
+                        String sessionToken = getUniqueToken(name);
+
                         JSONObject jsonObject = createUser(name, 0);
                         User user = new User(name, password, 0, sessionToken, jsonObject);
                         userObject.put(name, user);
@@ -91,9 +94,34 @@ public class Main {
         }
     }
 
-    @PostMapping("/update_user")
-    public void updateUser(HttpServletRequest request, @RequestBody String payload) {
+    public synchronized String getUniqueToken(String name) {
+        String str;
+        do {
+            str = randomString.nextString();
+        } while(userMap.containsKey(str));
 
+        userMap.put(str, name);
+
+        return str;
+    }
+
+    @PostMapping("/submit_flag")
+    public String updateUser(HttpServletRequest request, HttpServletResponse response, @ModelAttribute SubmitFlag flag) throws IOException {
+        String token = findCookie(request, "user_token");
+
+        if(userMap.containsKey(token)) {
+            String username = userMap.get(token);
+            if(userObject.containsKey(username)) {
+                User user = userObject.get(username);
+                if(user.sessionID.equals(token)) {
+                    String result = user.addFlag(this, flag.flagName());
+                    return new JSONObject().put("result", result).toString();
+                }
+            }
+        }
+        //token is stale re login;
+        response.sendRedirect(mainPage);
+        return "{}";
     }
 
     /**
@@ -142,7 +170,7 @@ public class Main {
     public Main() {
         scores = readString("/fetcher.html");
         style = readString("/style.css");
-        login = readString("/login.html");
+        login = readString("/index.html");
 
         JSONArray flags = new JSONArray(readString("/flags.json"));
         for(int x = 0; x < flags.length(); x++) {
@@ -201,19 +229,25 @@ public class Main {
             this.sessionID = sessionID;
         }
 
-        public void addFlag(Main main, String flag) {
-            if(!flags.contains(flag) && main.flags.containsKey(flag)) {
-                int score = main.flags.get(flag);
-                flags.add(flag);
-                this.score += score;
-                JSONArray jsonArray = new JSONArray(this.flags.size());
-                this.flags.forEach(jsonArray::put);
+        public String addFlag(Main main, String flag) {
+            if (flags.contains(flag)) {
+                return "You already have this flag!";
+            }
+            if (!main.flags.containsKey(flag)) {
+                return "Invalid Flag!";
+            }
 
-                synchronized (main.userObject) {
-                    jsonObject.put("score", this.score);
-                    jsonObject.put("flags", jsonArray);
-                    main.message = jsonObject.toString();
-                }
+            int score = main.flags.get(flag);
+            flags.add(flag);
+            this.score += score;
+            JSONArray jsonArray = new JSONArray(this.flags.size());
+            this.flags.forEach(jsonArray::put);
+
+            synchronized (main.userObject) {
+                jsonObject.put("score", this.score);
+                jsonObject.put("flags", jsonArray);
+                main.message = jsonObject.toString();
+                return "success";
             }
         }
     }
