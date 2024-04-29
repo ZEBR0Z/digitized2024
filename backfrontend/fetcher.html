@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+</head>
+
+<body>
+    <h1>Scoreboard</h1>
+    <ul id="scoreList"></ul>
+
+    <script>
+        const apiUrl = 'http:127.0.0.1/tw'; // Replace with your API URL
+        let scores = [];
+
+        function fetchScores() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => updateList(data))
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        function updateList(data) {
+            const currentNames = scores.map(score => score.name);
+            data.forEach(item => {
+                if (!currentNames.includes(item.name)) {
+                    scores.push(item);
+                    const li = document.createElement('li');
+                    li.textContent = `${item.name}: ${item.score}`;
+                    document.getElementById('scoreList').appendChild(li);
+                }
+            });
+        }
+
+        fetchScores();
+
+        // Poll every second
+        setInterval(fetchScores, 1000);
+    </script>
+</body>
+
+</html>
