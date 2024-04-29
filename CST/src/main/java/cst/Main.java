@@ -24,7 +24,8 @@ public class Main {
      *
      * @param payload
      *  {
-     *      name: "the username"
+     *      username: "the username" //must be alphanumeric
+     *      password: "the password"
      *  }
      */
     @PostMapping("/create_user")
@@ -32,13 +33,18 @@ public class Main {
         synchronized (users) {
             JSONObject jsonObject = new JSONObject(payload);
 
-            String name = jsonObject.getString("name");
+            String name = jsonObject.getString("username");
             //String password = jsonObject.getString("password");
             if(!name.matches("[A-Za-z0-9]+")) {
-                users.put(name);
+                users.put(createUser(name, 0));
                 message = users.toString();
             }
         }
+    }
+
+    @PostMapping("/update_user")
+    public void updateUser(HttpServletRequest request, @RequestBody String payload) {
+
     }
 
     /**
@@ -46,7 +52,7 @@ public class Main {
      * @return
      * [
      *     {
-     *          name: "the username:",
+     *          username: "the username:",
      *          score: "score"
      *     }
      * ]
@@ -54,6 +60,16 @@ public class Main {
     @GetMapping("/get_scores")
     public String getScores() {
         return message;
+    }
+
+    public JSONObject createUser(String name, int score) {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("username", name);
+        jsonObject.put("score", score);
+        jsonObject.put("flags", new JSONArray());
+
+        return jsonObject;
     }
 
     @RequestMapping(value = "/scores")
