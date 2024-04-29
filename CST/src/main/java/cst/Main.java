@@ -16,7 +16,7 @@ import java.util.Random;
 @SpringBootApplication
 public class Main {
 
-    public JSONArray users = new JSONArray();
+    public JSONArray users = new JSONArray().put(createUser("user", 10));
 
     public String message = users.toString();
 
@@ -75,6 +75,11 @@ public class Main {
     @RequestMapping(value = "/scores")
     public String scores() {
         return readString("/fetcher.html");
+    }
+
+    @RequestMapping(value = "/style.css")
+    public String style() {
+        return readString("/style.css");
     }
 
     public static String readString(String path) {
