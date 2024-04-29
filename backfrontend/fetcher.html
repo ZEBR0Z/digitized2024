@@ -27,7 +27,7 @@
 
             function updateScores(newData) {
                 newData.forEach(item => {
-                    const existing = scores.find(score => score.name === item.name);
+                    const existing = scores.find(score => score.username === item.username);
                     if (existing) {
                         if (existing.score !== item.score) {
                             existing.score = item.score; // Update score if changed
@@ -49,7 +49,7 @@
 
                 scores.forEach(item => {
                     const li = document.createElement('li');
-                    li.textContent = `${item.name}: ${item.score}`;
+                    li.textContent = `${item.username}: ${item.score}`;
                     list.appendChild(li);
                 });
             }
