@@ -15,13 +15,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.function.Consumer;
 
 @RestController
 @SpringBootApplication
 public class Main {
 
     public JSONArray users = new JSONArray().put(createUser("user", 10));
-    public HashMap<String, User> userObject = new HashMap<>();
+    public final HashMap<String, User> userObject = new HashMap<>();
 
     public String message = users.toString();
     public RandomString randomString = new RandomString(32);
@@ -29,6 +31,11 @@ public class Main {
     public String redirect = "http://localhost:8080/scores";
 
     public String url = "http://localhost:8080/digitized2024";
+
+
+    public HashMap<String, Integer> flags = new HashMap<>();
+
+
 
     public record LoginRequest(String username, String password) {}
 
@@ -69,11 +76,11 @@ public class Main {
                         }
                     } else {
                         String sessionToken = randomString.nextString();
-
-                        User user = new User(name, password, 0, sessionToken);
+                        JSONObject jsonObject = createUser(name, 0);
+                        User user = new User(name, password, 0, sessionToken, jsonObject);
                         userObject.put(name, user);
 
-                        users.put(createUser(name, 0));
+                        users.put(jsonObject);
                         message = users.toString();
 
                         response.addCookie(new Cookie("user_token", sessionToken));
@@ -169,18 +176,36 @@ public class Main {
         public String username;
         public String password;
         int score;
-        ArrayList<String> flags;
+        public HashSet<String> flags;
+        public JSONObject jsonObject;
 
         public String sessionID;
 
 
-        public User(String username, String password, int score, String sessionID) {
+        public User(String username, String password, int score, String sessionID, JSONObject jsonObject) {
             this.username = username;
             this.password = password;
             this.score = score;
-            this.flags = new ArrayList<>();
+            this.flags = new HashSet<>();
+            this.jsonObject = jsonObject;
 
             this.sessionID = sessionID;
+        }
+
+        public void addFlag(Main main, String flag) {
+            if(!flags.contains(flag) && main.flags.containsKey(flag)) {
+                int score = main.flags.get(flag);
+                flags.add(flag);
+                this.score += score;
+                JSONArray jsonArray = new JSONArray(this.flags.size());
+                this.flags.forEach(jsonArray::put);
+
+                synchronized (main.userObject) {
+                    jsonObject.put("score", this.score);
+                    jsonObject.put("flags", jsonArray);
+                    main.message = jsonObject.toString();
+                }
+            }
         }
     }
 }
