@@ -59,7 +59,7 @@ public class Main {
             String password = loginRequest.password;
 
             if(name.matches("[A-Za-z0-9]+")) {
-                if(name.length() < 32) {
+                if(name.length() < 32 && !name.isEmpty()) {
                     if(userObject.containsKey(name)) {
                         User user = userObject.get(name);
 
@@ -247,7 +247,7 @@ public class Main {
                 jsonObject.put("score", this.score);
                 jsonObject.put("flags", jsonArray);
                 main.message = jsonObject.toString();
-                return "success";
+                return "Success";
             }
         }
     }
