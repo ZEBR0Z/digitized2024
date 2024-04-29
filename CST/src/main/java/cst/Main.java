@@ -1,6 +1,7 @@
 package cst;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
@@ -8,17 +9,25 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.SecureRandom;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @SpringBootApplication
 public class Main {
 
     public JSONArray users = new JSONArray().put(createUser("user", 10));
+    public HashMap<String, User> userObject = new HashMap<>();
 
     public String message = users.toString();
+    public SecureRandom random = new SecureRandom();
+
+    public String redirect = "http://localhost:8080/scores";
 
     /**
      *
@@ -29,18 +38,33 @@ public class Main {
      *  }
      */
     @PostMapping("/create_user")
-    public void createUser(HttpServletRequest request, @RequestBody String payload) {
-        synchronized (users) {
-            JSONObject jsonObject = new JSONObject(payload);
+    public void createUser(HttpServletRequest request, HttpServletResponse response, @RequestBody String payload) throws IOException {
+        synchronized (userObject) {
+            System.out.println(payload);
+            //JSONObject jsonObject = new JSONObject(payload);
 
-            String name = jsonObject.getString("username");
+            //String name = jsonObject.getString("username");
             //String password = jsonObject.getString("password");
+
+            String name = "bob";
+            String password = "abc";
+
+            System.out.println(password);
+
             if(name.matches("[A-Za-z0-9]+")) {
                 if(name.length() < 32) {
-                    users.put(createUser(name, 0));
-                    message = users.toString();
+                    if(userObject.containsKey(name)) {
+
+                    } else {
+                        User user = new User(name, password, 0, new String[] {}, request.getSession().getId());
+                        userObject.put(name, user);
+
+                        users.put(createUser(name, 0));
+                        message = users.toString();
+                    }
                 }
             }
+            response.sendRedirect(redirect);
         }
     }
 
@@ -84,6 +108,11 @@ public class Main {
         return readString("/style.css");
     }
 
+    @RequestMapping(value = "/digitized2024")
+    public String login() {
+        return readString("/index.html");
+    }
+
     public static String readString(String path) {
         StringBuilder stringBuilder = new StringBuilder();
         InputStream stream = Main.class.getResourceAsStream(path);
@@ -98,5 +127,25 @@ public class Main {
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+    }
+
+    public static class User {
+
+        public String username;
+        public String password;
+        int score;
+        String[] flags;
+
+        public String sessionID;
+
+
+        public User(String username, String password, int score, String[] flags, String sessionID) {
+            this.username = username;
+            this.password = password;
+            this.score = score;
+            this.flags = flags;
+
+            this.sessionID = sessionID;
+        }
     }
 }
