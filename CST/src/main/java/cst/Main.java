@@ -35,9 +35,11 @@ public class Main {
 
             String name = jsonObject.getString("username");
             //String password = jsonObject.getString("password");
-            if(!name.matches("[A-Za-z0-9]+")) {
-                users.put(createUser(name, 0));
-                message = users.toString();
+            if(name.matches("[A-Za-z0-9]+")) {
+                if(name.length() < 32) {
+                    users.put(createUser(name, 0));
+                    message = users.toString();
+                }
             }
         }
     }
