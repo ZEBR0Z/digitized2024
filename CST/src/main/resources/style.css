@@ -1,20 +1,22 @@
 body {
     font-family: 'JetBrains Mono', monospace;
+    width: 100vw;
+    overflow-x: hidden;
     background-color: #333;
     color: #fff;
     padding: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    max-width: 100%;
+    margin: 5;
 }
 
 .login-container {
     background-image: linear-gradient(to right top, #ff0084, #330867);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
+    border-radius: 64;
+    padding: 24px;
+    margin: 16px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     width: 320px;
     text-align: center;
@@ -39,12 +41,14 @@ body {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid transparent;
-    border-radius: 5px;
+input[type="text"], 
+input[type="password"] 
+
+{
+    width: 300px;
+    padding: 5px;
+    border: 5px solid transparent;
+    border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.8);
     margin-top: 5px;
 }
@@ -62,12 +66,12 @@ button {
 }
 
 button:hover {
-    background-color: #ff0084;
+    background-color: #5A2;
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     color: #fff;
 }
 
