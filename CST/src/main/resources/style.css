@@ -4,21 +4,22 @@ body {
     color: #fff;
     padding: 40px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-div {
+.login-container {
     background-image: linear-gradient(to right top, #ff0084, #330867);
     border-radius: 10px;
-    padding: 15px 25px;
-    margin: 10px 0;
+    padding: 20px;
+    margin: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     width: 320px;
-    /* Adjusted width for better fit */
     text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.4s ease;
     animation: slideIn 0.5s ease-out forwards;
+    transition: transform 0.3s ease-in-out, box-shadow 0.4s ease;
 }
 
 @keyframes slideIn {
@@ -33,7 +34,43 @@ div {
     }
 }
 
-div:hover {
+.login-container:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-top: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #330867;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #ff0084;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+h2 {
+    color: #fff;
 }
