@@ -29,6 +29,10 @@ public class Main {
 
     public String redirect = "http://localhost:8080/scores";
 
+    public String url = "http://localhost:8080/digitized2024";
+
+    public record LoginRequest(String username, String password) {}
+
     /**
      *
      * @param payload
@@ -37,24 +41,20 @@ public class Main {
      *      password: "the password"
      *  }
      */
-    @PostMapping("/create_user")
-    public void createUser(HttpServletRequest request, HttpServletResponse response, @RequestBody String payload) throws IOException {
+    @PostMapping(value = "/create_user")
+    public void createUser(HttpServletRequest request, HttpServletResponse response, @ModelAttribute LoginRequest loginRequest) throws IOException {
         synchronized (userObject) {
-            System.out.println(payload);
-            //JSONObject jsonObject = new JSONObject(payload);
+            System.out.println(loginRequest.password);
+            System.out.println(loginRequest.username);
 
-            //String name = jsonObject.getString("username");
-            //String password = jsonObject.getString("password");
+            String name = loginRequest.username;
+            String password = loginRequest.password;
 
-            String name = "bob";
-            String password = "abc";
-
-            System.out.println(password);
 
             if(name.matches("[A-Za-z0-9]+")) {
                 if(name.length() < 32) {
                     if(userObject.containsKey(name)) {
-
+                        //update user token
                     } else {
                         User user = new User(name, password, 0, new String[] {}, request.getSession().getId());
                         userObject.put(name, user);
