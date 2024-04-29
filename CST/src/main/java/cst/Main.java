@@ -1,5 +1,6 @@
 package cst;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
@@ -25,7 +26,7 @@ public class Main {
     public HashMap<String, User> userObject = new HashMap<>();
 
     public String message = users.toString();
-    public SecureRandom random = new SecureRandom();
+    public RandomString randomString = new RandomString(32);
 
     public String redirect = "http://localhost:8080/scores";
 
@@ -50,17 +51,34 @@ public class Main {
             String name = loginRequest.username;
             String password = loginRequest.password;
 
-
             if(name.matches("[A-Za-z0-9]+")) {
                 if(name.length() < 32) {
                     if(userObject.containsKey(name)) {
-                        //update user token
+                        User user = userObject.get(name);
+
+                        if(password.equals(user.password)) {
+                            String cookie = findCookie(request, "user_token");
+
+                            if (cookie == null || !cookie.equals(user.sessionID)) {
+                                //new browser instance give them the cookie
+                                //or the cached cookie is stale so resend them it
+                                response.addCookie(new Cookie("user_token", user.sessionID));
+                            } else {
+                                System.out.println("User is good to go");
+                            }
+                        } else {
+                            //invalid password
+                        }
                     } else {
-                        User user = new User(name, password, 0, new String[] {}, request.getSession().getId());
+                        String sessionToken = randomString.nextString();
+
+                        User user = new User(name, password, 0, new String[] {}, sessionToken);
                         userObject.put(name, user);
 
                         users.put(createUser(name, 0));
                         message = users.toString();
+
+                        response.addCookie(new Cookie("user_token", sessionToken));
                     }
                 }
             }
@@ -127,6 +145,16 @@ public class Main {
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+    }
+
+    public String findCookie(HttpServletRequest request, String key) {
+        Cookie[] cookies = request.getCookies();
+        for(Cookie cookie : cookies) {
+            if(cookie.getName().equals(key)) {
+                return cookie.getValue();
+            }
+        }
+        return null;
     }
 
     public static class User {
