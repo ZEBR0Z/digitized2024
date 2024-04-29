@@ -16,23 +16,44 @@
         let scores = [];
 
         function fetchScores() {
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => updateList(data))
-                .catch(error => console.error('Error fetching data:', error));
-        }
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        updateScores(data);
+                        updateDOM();
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            }
 
-        function updateList(data) {
-            const currentNames = scores.map(score => score.name);
-            data.forEach(item => {
-                if (!currentNames.includes(item.name)) {
-                    scores.push(item);
+            function updateScores(newData) {
+                // update existing scowes or add new ones
+                newData.forEach(item => {
+                    const existing = scores.find(score => score.name === item.name);
+                    if (existing) {
+                        if (existing.score !== item.score) {
+                            existing.score = item.score; // Update score if changed
+                        }
+                    } else {
+                        scores.push(item); // Add new item
+                    }
+                });
+            }
+
+            function updateDOM() {
+                // sort because gaming
+                scores.sort((a, b) => b.score - a.score);
+
+                // clear list and append in new order
+                // not gonna bother making it move things around without deleting because jesus
+                const list = document.getElementById('scoreList');
+                list.innerHTML = '';
+
+                scores.forEach(item => {
                     const li = document.createElement('li');
                     li.textContent = `${item.name}: ${item.score}`;
-                    document.getElementById('scoreList').appendChild(li);
-                }
-            });
-        }
+                    list.appendChild(li);
+                });
+            }
 
         fetchScores();
 
