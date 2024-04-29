@@ -13,10 +13,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @SpringBootApplication
@@ -72,7 +70,7 @@ public class Main {
                     } else {
                         String sessionToken = randomString.nextString();
 
-                        User user = new User(name, password, 0, new String[] {}, sessionToken);
+                        User user = new User(name, password, 0, sessionToken);
                         userObject.put(name, user);
 
                         users.put(createUser(name, 0));
@@ -171,16 +169,16 @@ public class Main {
         public String username;
         public String password;
         int score;
-        String[] flags;
+        ArrayList<String> flags;
 
         public String sessionID;
 
 
-        public User(String username, String password, int score, String[] flags, String sessionID) {
+        public User(String username, String password, int score, String sessionID) {
             this.username = username;
             this.password = password;
             this.score = score;
-            this.flags = flags;
+            this.flags = new ArrayList<>();
 
             this.sessionID = sessionID;
         }
