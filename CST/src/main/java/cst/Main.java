@@ -143,6 +143,15 @@ public class Main {
         scores = readString("/fetcher.html");
         style = readString("/style.css");
         login = readString("/login.html");
+
+        JSONArray flags = new JSONArray(readString("/flags.json"));
+        for(int x = 0; x < flags.length(); x++) {
+            JSONObject flag = flags.getJSONObject(x);
+            String name = flag.getString("name");
+            int score = flag.getInt("score");
+
+            this.flags.put(name, score);
+        }
     }
 
     public static String readString(String path) {
