@@ -26,7 +26,6 @@
             }
 
             function updateScores(newData) {
-                // update existing scowes or add new ones
                 newData.forEach(item => {
                     const existing = scores.find(score => score.name === item.name);
                     if (existing) {
