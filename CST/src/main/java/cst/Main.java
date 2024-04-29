@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.util.Random;
 
 @RestController
@@ -21,6 +20,13 @@ public class Main {
 
     public String message = users.toString();
 
+    /**
+     *
+     * @param payload
+     *  {
+     *      name: "the username"
+     *  }
+     */
     @PostMapping("/create_user")
     public void createUser(HttpServletRequest request, @RequestBody String payload) {
         synchronized (users) {
@@ -35,6 +41,16 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * @return
+     * [
+     *     {
+     *          name: "the username:",
+     *          score: "score"
+     *     }
+     * ]
+     */
     @GetMapping("/get_scores")
     public String getScores() {
         JSONArray array = new JSONArray();
