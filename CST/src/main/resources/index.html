@@ -10,19 +10,48 @@
 </head>
 <body>
     <div class="login-container">
-        <form action="/create_user" method="POST">
-            <h2>Login</h2>
-            <div class="input-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+    <form class="form" autocomplete="off">
+        <div class="control">
+            <h1>Sign In</h1>
+        </div>
+        <div class="control block-cube block-input">
+            <input name="username" type="text" placeholder="Username" />
+            <div class="bg-top">
+                <div class="bg-inner"></div>
             </div>
-            <div class="input-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+            <div class="bg-right">
+                <div class="bg-inner"></div>
             </div>
-            <button type="submit">Login</button>
-            <!--- http://localhost:8080/create_user -->
-        </form>
+            <div class="bg">
+                <div class="bg-inner"></div>
+            </div>
+        </div>
+        <div class="control block-cube block-input">
+            <input name="password" type="password" placeholder="Password" />
+            <div class="bg-top">
+                <div class="bg-inner"></div>
+            </div>
+            <div class="bg-right">
+                <div class="bg-inner"></div>
+            </div>
+            <div class="bg">
+                <div class="bg-inner"></div>
+            </div>
+        </div>
+        <button class="btn block-cube block-cube-hover" type="button">
+            <div class="bg-top">
+                <div class="bg-inner"></div>
+            </div>
+            <div class="bg-right">
+                <div class="bg-inner"></div>
+            </div>
+            <div class="bg">
+                <div class="bg-inner"></div>
+            </div>
+            <div class="text">Log In</div>
+        </button>
+    </form>
+
     </div>
 </body>
 
