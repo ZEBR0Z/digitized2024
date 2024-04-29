@@ -1,23 +1,29 @@
-function createUserElement(username) {
+function createUserElement(name, score) {
     const userElement = document.createElement('div');
-    userElement.textContent = username;
+    userElement.textContent = `${name}: ${score}`;
     document.body.appendChild(userElement);
 }
 
 
-async function fetchAndDisplayUsers() {
+async function fetchAndDisplayUsers(existingUsers) {
     try {
         const response = await fetch('http://endpoint/');
-        const data = await response.json();
-        data.forEach(user => {
-            createUserElement(user.username);
+        const users = await response.json();
+        users.forEach(user => {
+            if (!existingUsers.includes(user.name)) {
+                createUserElement(user.name, user.score);
+                existingUsers.push(user.name); 
+            }
         });
     } catch (error) {
         console.error('Failed to fetch users:', error);
     }
-}fetchAndDisplayUsers();
+}
 
+// Initial setup
+const existingUsers = []; // To keep track of displayed users
+fetchAndDisplayUsers(existingUsers);
 
 setInterval(() => {
-    fetchAndDisplayUsers();  
+    fetchAndDisplayUsers(existingUsers);
 }, 10000);
