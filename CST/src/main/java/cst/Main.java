@@ -116,19 +116,28 @@ public class Main {
         return jsonObject;
     }
 
+    public String scores;
     @RequestMapping(value = "/scores")
     public String scores() {
-        return readString("/fetcher.html");
+        return scores;
     }
 
+    public String style;
     @RequestMapping(value = "/style.css")
     public String style() {
-        return readString("/style.css");
+        return style;
     }
 
+    public String login;
     @RequestMapping(value = "/digitized2024")
     public String login() {
-        return readString("/index.html");
+        return login;
+    }
+
+    public Main() {
+        scores = readString("/fetcher.html");
+        style = readString("/style.css");
+        login = readString("/login.html");
     }
 
     public static String readString(String path) {
