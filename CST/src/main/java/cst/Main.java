@@ -53,15 +53,7 @@ public class Main {
      */
     @GetMapping("/get_scores")
     public String getScores() {
-        JSONArray array = new JSONArray();
-        array.put(makeUser("parsa", 100));
-        array.put(makeUser("hilligans", new Random().nextInt(200)));
-        System.out.println("sent");
-        return array.toString();
-    }
-
-    public JSONObject makeUser(String name, int score) {
-        return new JSONObject().put("name", name).put("score", score);
+        return message;
     }
 
     @RequestMapping(value = "/scores")
