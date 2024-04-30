@@ -1,34 +1,77 @@
 [
   {
-    "name": "uofscst{hireme@hardy.co}",
+    "name": "Hello world!",
+    "flag": "uofscst{hireme@hardy.co}",
     "score": 20
   },
   {
-    "name": "uofscst{m9j9ou8oeh}",
+    "name": "a\\*\\*\\*\\* ",
+    "flag": "uofscst{alice@hardy.co} ",
+    "score": 20
+  },
+  {
+    "name": "b\\*\\*\\",
+    "flag": "uofscst{bob@hardy.co} ",
+    "score": 20
+  },
+  {
+    "name": "c\\*\\*\\*\\*\\* ",
+    "flag": "uofscst{contact@hardy.co} ",
+    "score": 20
+  },
+  {
+    "name": "e\\*\\*\\",
+    "flag": "uofscst{eve@hardy.co} ",
+    "score": 20
+  },
+  {
+    "name": "h\\*\\*\\*\\*\\* ",
+    "flag": "uofscst{hireme@hardy.co} ",
+    "score": 20
+  },
+  {
+    "name": "Find the hidden login page.",
+    "flag": "uofscst{m9j9ou8oeh}",
     "score": 50
   },
   {
-    "name": "uofscst{AZPEGMjXHp}",
-    "score": 100
-  },
-  {
-    "name": "uofscst{R7PSavvRrd}",
+    "name": "Et tu, brute? ",
+    "flag": "uofscst{R7PSavvRrd}",
     "score": 50
   },
   {
-    "name": "uofscst{RN8usPHaBB}",
+    "name": "Log into the hidden login page ",
+    "flag": "uofscst{AZPEGMjXHp}",
     "score": 100
   },
   {
-    "name": "uofscst{tIEIAqXWVb}",
+    "name": "Log into hidden maintenance page. ",
+    "flag": "uofscst{RN8usPHaBB}",
     "score": 100
   },
   {
-    "name": "uofscst{jsME2JR5nL}",
+    "name": "Did you read all the things?",
+    "flag": "uofscst{tIEIAqXWVb}",
+    "score": 100
+  },
+  {
+    "name": "Which account is actually real? Tell us we'll give you the flag. You only get one shot!",
+    "flag": "uuofscst{Y4ScaBU6s5}",
+    "score": 150
+  },
+  {
+  "name": "Social Network Scraping ",
+  "flag": "uofscst{Xee4BLhvF4}",
+  "score": 200
+  },
+  {
+    "name": "Can you crack this one? ",
+    "flag": "uofscst{jsME2JR5nL}",
     "score": 200
   },
   {
-    "name": "uofscst{teapot}",
+    "name": "I'm a little teapot",
+    "flag": "uofscst{teapot}",
     "score": 500
   }
 
