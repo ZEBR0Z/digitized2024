@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<link rel="stylesheet" href="h_style.css">
+
+<head>
+    <meta charset="utf-8">
+    <title>Challenges</title>
+</head>
+
+<body>
+
+    <div>
+    <button data-micromodal-trigger="modal-1" href='javascript:;'>Challenge 1</button>
+
+    <div class="micromodal" id="modal-1" aria-hidden="true">
+        <form action="/sumbit_flag" method="POST">
+        <div class="micromodal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+            
+                <h2>Challenge 1 name</h2>
+                <p> Challenge desciroption or hint bl bla bla </p>
+                <div class="input-group">
+                    <label for="flag">Flag:</label>
+                    <input type="text" id="flag" name="flag" required>
+                </div>
+
+                <button type="submit">Submit</button>
+            </div>
+
+            </form>
+        </div>
+
+
+</div>
+    
+
+    <div>
+
+        <form action="/sumbit_flag" method="POST">
+    <button data-micromodal-trigger="modal-2" href='javascript:;'>Challenge 2</button>
+
+    <div class="micromodal" id="modal-2" aria-hidden="true">
+        <div class="micromodal__overlay" tabindex="-2" data-micromodal-close>
+            <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-2-title">
+
+                <h2>Challenge 2 name</h2>
+                <p> Challenge desciroption or hint bl bla bla </p>
+                <div class="input-group">
+                    <label for="flag">Flag: </label>
+                    <input type="text" id="flag" name="flag" required>
+                </div>
+                <button type="submit">Submit</button>
+
+            </div>
+        </div>
+
+        </form>
+
+    </div>
+
+    </div>
+
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+    <script>
+        MicroModal.init();
+    </script>
+
+    
+</body>
+
+</html>
