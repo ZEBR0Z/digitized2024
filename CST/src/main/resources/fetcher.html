@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="f_style.css">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,56 +11,73 @@
 
 <body>
     <h1>Scoreboard</h1>
-    <ul id="scoreList"></ul>
+    <table id="scoreTable">
+        <thead>
+            <tr>
+                <th>Pos</th>
+                <th>Username</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 
     <script>
         const apiUrl = 'http://localhost:8080/get_scores'; // Replace with your API URL
         let scores = [];
 
         function fetchScores() {
-                fetch(apiUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        updateScores(data);
-                        updateDOM();
-                    })
-                    .catch(error => console.error('Error fetching data:', error));
-            }
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    updateScores(data);
+                    updateDOM();
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
 
-            function updateScores(newData) {
-                newData.forEach(item => {
-                    const existing = scores.find(score => score.username === item.username);
-                    if (existing) {
-                        if (existing.score !== item.score) {
-                            existing.score = item.score; // Update score if changed
-                        }
-                    } else {
-                        scores.push(item); // Add new item
+        function updateScores(newData) {
+            newData.forEach(item => {
+                const existing = scores.find(score => score.username === item.username);
+                if (existing) {
+                    if (existing.score !== item.score) {
+                        existing.score = item.score; // Update score if changed
                     }
-                });
-            }
+                } else {
+                    scores.push(item); // Add new item
+                }
+            });
+        }
 
-            function updateDOM() {
-                // sort because gaming
-                scores.sort((a, b) => b.score - a.score);
+        function updateDOM() {
+            scores.sort((a, b) => b.score - a.score);
 
-                // clear list and append in new order
-                // not gonna bother making it move things around without deleting because jesus
-                const list = document.getElementById('scoreList');
-                list.innerHTML = '';
+            const tableBody = document.getElementById('scoreTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = '';
 
-                scores.forEach(item => {
-                    const li = document.createElement('li');
-                    li.textContent = `${item.username}: ${item.score}`;
-                    list.appendChild(li);
-                });
-            }
+            scores.forEach((item, index) => {
+                const row = document.createElement('tr');
+                const positionCell = document.createElement('td');
+                const usernameCell = document.createElement('td');
+                const scoreCell = document.createElement('td');
+
+                positionCell.textContent = index + 1;
+                usernameCell.textContent = item.username;
+                scoreCell.textContent = item.score;
+
+                row.appendChild(positionCell);
+                row.appendChild(usernameCell);
+                row.appendChild(scoreCell);
+
+                tableBody.appendChild(row);
+            });
+        }
 
         fetchScores();
-
-        // Poll every second
         setInterval(fetchScores, 1000);
     </script>
 </body>
 
 </html>
+
