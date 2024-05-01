@@ -109,11 +109,12 @@ public class Main {
     }
 
     @PostMapping("/submit_flag")
-    public String updateUser(HttpServletRequest request, HttpServletResponse response,  @RequestBody String payload) throws IOException {
-//    public String updateUser(HttpServletRequest request, HttpServletResponse response,  @ModelAttribute SubmitFlag flag) throws IOException {
-        System.out.println(payload);
-        SubmitFlag flag = new SubmitFlag(null,null);
+//    public String updateUser(HttpServletRequest request, HttpServletResponse response,  @RequestBody String payload) throws IOException {
+    public String updateUser(HttpServletRequest request, HttpServletResponse response,  @ModelAttribute SubmitFlag flag) throws IOException {
+        //System.out.println(payload);
+       // SubmitFlag flag = new SubmitFlag(null,null);
         String token = findCookie(request, "user_token");
+        System.out.println(flag);
 
         if(userMap.containsKey(token)) {
             String username = userMap.get(token);
@@ -218,7 +219,7 @@ public class Main {
         JSONArray flags = new JSONArray(readString("/flags.json"));
         for(int x = 0; x < flags.length(); x++) {
             JSONObject flag = flags.getJSONObject(x);
-            String name = flag.getString("name");
+            String name = flag.getString("name").trim();
             String f = flag.getString("flag");
             int score = flag.getInt("score");
 
@@ -281,7 +282,9 @@ public class Main {
             if (!main.flags.containsKey(flagName)) {
                 return "Invalid Flag!";
             }
-            if(!main.flags.get(flagName).equals(res)) {
+            if(!main.flags.get(flagName).flag().equals(res)) {
+                //System.out.println("res:" + res);
+                //System.out.println("expec:" + main.flags.get(flagName));
                 return "Invalid Result";
             }
 
@@ -294,7 +297,7 @@ public class Main {
             synchronized (main.userObject) {
                 jsonObject.put("score", this.score);
                 jsonObject.put("flags", jsonArray);
-                main.message = jsonObject.toString();
+                main.message = main.users.toString();
                 return "Success";
             }
         }
