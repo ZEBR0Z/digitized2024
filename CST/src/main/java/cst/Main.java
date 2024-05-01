@@ -32,15 +32,18 @@ public class Main {
     public String redirect = "http://localhost:8080/scores";
 
     public String mainPage = "http://localhost:8080/digitized2024";
+    public String mainPage1 = "http://localhost:8080/main";
 
 
-    public HashMap<String, Integer> flags = new HashMap<>();
+    public HashMap<String, Flag> flags = new HashMap<>();
 
     public ConcurrentHashMap<String, String> userMap = new ConcurrentHashMap<>();
 
 
     public record LoginRequest(String username, String password) {}
-    public record SubmitFlag(String flagName) {}
+    public record SubmitFlag(String id, String name) {}
+
+    public record Flag(String name, String flag, int score) {}
     /**
      *
      * @param payload
@@ -114,7 +117,7 @@ public class Main {
             if(userObject.containsKey(username)) {
                 User user = userObject.get(username);
                 if(user.sessionID.equals(token)) {
-                    String result = user.addFlag(this, flag.flagName());
+                    String result = user.addFlag(this, flag.name(), flag.id());
                     return new JSONObject().put("result", result).toString();
                 }
             }
@@ -122,6 +125,20 @@ public class Main {
         //token is stale re login;
         response.sendRedirect(mainPage);
         return "{}";
+    }
+
+    @GetMapping("/get_flags")
+    public String getFlags(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //JSONObject
+        String token = findCookie(request, "user_token");
+
+        if(userMap.containsKey(token)) {
+
+        } else {
+            response.sendRedirect(mainPage);
+        }
+
+        return null;
     }
 
     /**
@@ -156,9 +173,21 @@ public class Main {
     }
 
     public String style;
-    @RequestMapping(value = "/style.css")
+    @RequestMapping(value = "/i_style.css")
     public String style() {
         return style;
+    }
+
+    public String style1;
+    @RequestMapping(value = "/f_style.css")
+    public String style1() {
+        return style1;
+    }
+
+    public String style2;
+    @RequestMapping(value = "/h_style.css")
+    public String style2() {
+        return style2;
     }
 
     public String login;
@@ -167,18 +196,30 @@ public class Main {
         return login;
     }
 
+    public String main;
+    @RequestMapping(value = "/main")
+    public String main() {
+        return main;
+    }
+
     public Main() {
-        scores = readString("/fetcher.html");
-        style = readString("/style.css");
+        style = readString("/i_style.css");
+        style1 = readString("/f_style.css");
+        style2 = readString("/h_style.css");
+
         login = readString("/index.html");
+        scores = readString("/fetcher.html");
+        main = readString("/main.html");
+
 
         JSONArray flags = new JSONArray(readString("/flags.json"));
         for(int x = 0; x < flags.length(); x++) {
             JSONObject flag = flags.getJSONObject(x);
             String name = flag.getString("name");
+            String f = flag.getString("flag");
             int score = flag.getInt("score");
 
-            this.flags.put(name, score);
+            this.flags.put(name, new Flag(name, f, score));
         }
     }
 
@@ -229,16 +270,20 @@ public class Main {
             this.sessionID = sessionID;
         }
 
-        public String addFlag(Main main, String flag) {
-            if (flags.contains(flag)) {
+        public String addFlag(Main main, String flagName, String res) {
+            if (flags.contains(flagName)) {
                 return "You already have this flag!";
             }
-            if (!main.flags.containsKey(flag)) {
+            System.out.println(flagName);
+            if (!main.flags.containsKey(flagName)) {
                 return "Invalid Flag!";
             }
+            if(!main.flags.get(flagName).equals(res)) {
+                return "Invalid Result";
+            }
 
-            int score = main.flags.get(flag);
-            flags.add(flag);
+            int score = main.flags.get(flagName).score();
+            flags.add(flagName);
             this.score += score;
             JSONArray jsonArray = new JSONArray(this.flags.size());
             this.flags.forEach(jsonArray::put);
