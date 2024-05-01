@@ -122,6 +122,7 @@ public class Main {
                 User user = userObject.get(username);
                 if(user.sessionID.equals(token)) {
                     String result = user.addFlag(this, flag.name(), flag.flag());
+                    response.sendRedirect(mainPage1);
                     return new JSONObject().put("result", result).toString();
                 }
             }

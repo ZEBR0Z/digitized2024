@@ -15,7 +15,7 @@ public class Serving {
         scores = Main.readString("/fetcher.html");
         main = Main.readString("/main.html");
         mainjs = Main.readString("/main.js");
-        challenges = Main.readString("challenges.json");
+        challenges = Main.readString("/challenges.json");
     }
 
     public String scores;
