@@ -170,58 +170,7 @@ public class Main {
         return jsonObject;
     }
 
-    public String scores;
-    @RequestMapping(value = "/scores")
-    public String scores() {
-        return scores;
-    }
-
-    public String style;
-    @RequestMapping(value = "/i_style.css")
-    public String style() {
-        return style;
-    }
-
-    public String style1;
-    @RequestMapping(value = "/f_style.css")
-    public String style1() {
-        return style1;
-    }
-
-    public String style2;
-    @RequestMapping(value = "/h_style.css")
-    public String style2() {
-        return style2;
-    }
-
-    public String login;
-    @RequestMapping(value = "/digitized2024")
-    public String login() {
-        return login;
-    }
-
-    public String main;
-    @RequestMapping(value = "/main")
-    public String main() {
-        return main;
-    }
-
-    public String mainjs;
-    @RequestMapping(value = "/main.js")
-    public String mainjs() {
-        return mainjs;
-    }
-
     public Main() {
-        style = readString("/i_style.css");
-        style1 = readString("/f_style.css");
-        style2 = readString("/h_style.css");
-
-        login = readString("/index.html");
-        scores = readString("/fetcher.html");
-        main = readString("/main.html");
-        mainjs = readString("/main.js");
-
 
         JSONArray flags = new JSONArray(readString("/flags.json"));
         for(int x = 0; x < flags.length(); x++) {
