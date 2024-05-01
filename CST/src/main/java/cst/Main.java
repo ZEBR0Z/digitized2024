@@ -93,7 +93,7 @@ public class Main {
                     }
                 }
             }
-            response.sendRedirect(redirect);
+            response.sendRedirect(mainPage1);
         }
     }
 
@@ -122,6 +122,7 @@ public class Main {
                 User user = userObject.get(username);
                 if(user.sessionID.equals(token)) {
                     String result = user.addFlag(this, flag.name(), flag.flag());
+                    response.sendRedirect(mainPage1);
                     return new JSONObject().put("result", result).toString();
                 }
             }
@@ -137,12 +138,16 @@ public class Main {
         String token = findCookie(request, "user_token");
 
         if(userMap.containsKey(token)) {
-
+            User user = userObject.get(token);
+            JSONArray jsonArray = new JSONArray();
+            for(String s : user.flags) {
+                jsonArray.put(s);
+            }
+            return jsonArray.toString();
         } else {
             response.sendRedirect(mainPage);
+            return "[]";
         }
-
-        return null;
     }
 
     /**
