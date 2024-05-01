@@ -206,6 +206,12 @@ public class Main {
         return main;
     }
 
+    public String mainjs;
+    @RequestMapping(value = "/main.js")
+    public String mainjs() {
+        return mainjs;
+    }
+
     public Main() {
         style = readString("/i_style.css");
         style1 = readString("/f_style.css");
@@ -214,6 +220,7 @@ public class Main {
         login = readString("/index.html");
         scores = readString("/fetcher.html");
         main = readString("/main.html");
+        mainjs = readString("/main.js");
 
 
         JSONArray flags = new JSONArray(readString("/flags.json"));
