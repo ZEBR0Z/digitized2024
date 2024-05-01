@@ -15,6 +15,7 @@ public class Serving {
         scores = Main.readString("/fetcher.html");
         main = Main.readString("/main.html");
         mainjs = Main.readString("/main.js");
+        challenges = Main.readString("challenges.json");
     }
 
     public String scores;
@@ -57,5 +58,11 @@ public class Serving {
     @RequestMapping(value = "/main.js")
     public String mainjs() {
         return mainjs;
+    }
+
+    public String challenges;
+    @RequestMapping(value = "/challenges.json")
+    public String challenges() {
+        return challenges;
     }
 }
