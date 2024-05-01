@@ -30,7 +30,6 @@ public class Main {
     public RandomString randomString = new RandomString(32);
 
     public String redirect = "http://localhost:8080/scores";
-
     public String mainPage = "http://localhost:8080/digitized2024";
     public String mainPage1 = "http://localhost:8080/main";
 
@@ -55,9 +54,6 @@ public class Main {
     @PostMapping(value = "/create_user")
     public void createUser(HttpServletRequest request, HttpServletResponse response, @ModelAttribute LoginRequest loginRequest) throws IOException {
         synchronized (userObject) {
-            System.out.println(loginRequest.password);
-            System.out.println(loginRequest.username);
-
             String name = loginRequest.username;
             String password = loginRequest.password;
 
@@ -114,14 +110,13 @@ public class Main {
         //System.out.println(payload);
        // SubmitFlag flag = new SubmitFlag(null,null);
         String token = findCookie(request, "user_token");
-        System.out.println(flag);
 
         if(userMap.containsKey(token)) {
             String username = userMap.get(token);
             if(userObject.containsKey(username)) {
                 User user = userObject.get(username);
                 if(user.sessionID.equals(token)) {
-                    String result = user.addFlag(this, flag.name(), flag.flag());
+                    String result = user.addFlag(this, flag.name().trim(), flag.flag().trim());
                     response.sendRedirect(mainPage1);
                     return new JSONObject().put("result", result).toString();
                 }
@@ -137,8 +132,8 @@ public class Main {
         //JSONObject
         String token = findCookie(request, "user_token");
 
-        if(userMap.containsKey(token)) {
-            User user = userObject.get(token);
+        User user = getUser(token);
+        if(user != null) {
             JSONArray jsonArray = new JSONArray();
             for(String s : user.flags) {
                 jsonArray.put(s);
@@ -148,6 +143,14 @@ public class Main {
             response.sendRedirect(mainPage);
             return "[]";
         }
+    }
+
+    public User getUser(String token) {
+        String key = userMap.getOrDefault(token, null);
+        if(key == null) {
+            return null;
+        }
+        return userObject.getOrDefault(key, null);
     }
 
     /**
@@ -176,12 +179,11 @@ public class Main {
     }
 
     public Main() {
-
         JSONArray flags = new JSONArray(readString("/flags.json"));
         for(int x = 0; x < flags.length(); x++) {
             JSONObject flag = flags.getJSONObject(x);
             String name = flag.getString("name").trim();
-            String f = flag.getString("flag");
+            String f = flag.getString("flag").trim();
             int score = flag.getInt("score");
 
             this.flags.put(name, new Flag(name, f, score));
