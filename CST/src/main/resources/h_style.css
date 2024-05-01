@@ -1,0 +1,195 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+    max-width: 100%;
+    margin: 0;
+    background: #1a1a2e;
+    color: #ffffff;
+    font-family: Jetbrains Mono;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+template {
+    display: none;
+}
+
+a {
+    text-align: center;
+    height: 20vh;
+    width: 20vh;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    transition: 0.1s;
+}
+
+a:hover {
+    text-shadow: rgba(255,255,255,0.9) 0px 0px 16px;
+}
+
+.title {
+    margin-top: 5rem;
+    color: #e0ca3c;
+    text-shadow: rgba(255,255,102,0.9) 0px 0px 27px;
+    font-size: 2.5rem;
+}
+
+.button-grid {
+    display: grid;
+    height: 800px;
+    grid-template-columns: repeat(5, 3fr);
+    /* Adjust the number of columns as needed */
+    grid-template-rows: repeat(3, 1fr);
+    gap: 15px;
+    padding: 30px;
+}
+
+
+.button-submit {
+    width: 70px;
+    height: 40px;
+    background-color: green;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: transform 0.3s ease;
+    font-family: Jetbrains Mono;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+
+.button-submit:hover {
+    transform: scale(1.1);
+}
+
+.red_button {
+    max-width: 0px;
+    height: 0px;
+    padding: 0;
+    text-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right_align {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+}
+
+button {
+    display: block;
+    width: 280px;
+    height: 200px;
+    padding-block: 15px;
+    padding-inline: 30px;
+    box-shadow: 0 0px 8px rgba(255, 255, 255, 0.06);
+    background-color: #16213e;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 27px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.1s ease;
+    font-family: Jetbrains Mono;
+    color: white;
+}
+
+button:hover {
+    box-shadow: 0 0px 16px rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+div {
+
+    max-width: 100%;
+    max-height: fit-content;
+}
+
+.micromodal {
+    display: none;
+}
+
+.micromodal.is-open {
+    display: block;
+}
+
+.micromodal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 998;
+    height: 100vh;
+
+}
+
+.micromodal__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    overflow-y: auto;
+    max-width: 500px;
+    max-height: 100vh;
+    padding: 30px;
+    background-color: #0F3460;
+    border-radius: 4px;
+    z-index: 999;
+}
+
+.micromodal[aria-hidden="false"] .micromodal__overlay {
+    animation: microModalFadeIn .2s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal[aria-hidden="false"] .micromodal__container {
+    animation: microModalSlideIn .2s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal .micromodal__container,
+.micromodal .micromodal__overlay {
+    will-change: transform;
+}
+
+@keyframes microModalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 3;
+    }
+}
+
+@keyframes microModalSlideIn {
+    from {
+        transform: translateY(15%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
