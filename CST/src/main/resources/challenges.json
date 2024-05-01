@@ -1,0 +1,62 @@
+[
+    {
+        "c_name": "Hello world!",
+        "description": "Go to /example.txt to see what a flag for this CTF looks like."
+    },
+    {
+        "c_name": "a\\*\\*\\*\\*",
+        "description": "These are usernames for logging in."
+    },
+    {
+        "c_name": "b\\*\\*\\",
+        "description": "These are usernames for logging in."
+    },
+    {
+        "c_name": "c\\*\\*\\*\\*\\* ",
+        "description": "These are usernames for logging in."
+    },
+    {
+        "c_name": "e\\*\\*\\",
+        "description": "These are usernames for logging in."
+    },
+    {
+        "c_name": "h\\*\\*\\*\\*\\*",
+        "description": "These are usernames for logging in."
+    },
+    {
+        "c_name": "Find the hidden login page.",
+        "description": "What kind of page would you want to hide?"
+    },
+    {
+        "c_name": "Et tu, brute?",
+        "description": "Then fall!"
+    },
+    {
+        "c_name": "Log into the maintenance login page",
+        "description": ""
+    },
+    {
+        "c_name": "Log into hidden maintenance page.",
+        "description": "Just keep swimming~"
+    },
+    {
+        "c_name": "Did you read all the things?",
+        "description": "I wouldn't have noticed that, either."
+    },
+    {
+        "c_name": "Invalid credentials",
+        "description": "Which account is actually real? Tell us we'll give you the flag. You only get one shot!"
+    },
+    {
+        "c_name": "Social Network Scraping",
+        "description": " Security questions should really be called *in*security questions."
+    },
+    {
+        "c_name": "Can you crack this one?",
+        "description": ""
+    },
+    {
+        "c_name": "I'm a little teapot",
+        "description": "WHY do we even HAVE that code?"
+    }
+]
