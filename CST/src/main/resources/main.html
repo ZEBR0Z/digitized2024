@@ -2,6 +2,7 @@
 <html lang="en">
 <link rel="stylesheet" href="h_style.css">
 <!-- <script src="main.js"></script> -->
+<!-- TODO: ADD A LINK TO SCOREBOARD-->
 
 <head>
     <meta charset="utf-8">
@@ -16,7 +17,7 @@
         <button data-micromodal-trigger="modal-1" href='javascript:;'>Hello World!</button>
 
         <div class="micromodal" id="modal-1" aria-hidden="true">
-            <form id="flag-form" action="/submit_flag" method="POST">
+            <form action="/submit_flag" method="POST">
                 <div class="micromodal__overlay" tabindex="-1">
                     <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
                         <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
@@ -25,7 +26,7 @@
                         <div class="input-group">
                             <label for="flag">Flag:</label>
                             <input type="text" id="flag" name="flag" required>
-                            <input type="hidden" name="challenge_name" value="Hello World!">
+                            <input type="hidden" name="name" value="Hello World!">
                         </div>
                         <input class="button-submit" type="submit"></input>
                     </div>
@@ -49,9 +50,10 @@
                         <p> Challenge desciroption or hint bl bla bla </p>
                         <div class="input-group">
                             <label for="flag">Flag:</label>
-                            <input type="text" id="flag" name="a\*\*\*\*" required>
+                            <input type="text" id="flag" name="flag" required>
+                            <input type="hidden" name="name" value="a\*\*\*\*">
                         </div>
-                        <button class="button-submit" type="submit">Submit</button>
+                        <input class="button-submit" type="submit">Submit</input>
                     </div>
 
 
@@ -71,10 +73,10 @@
                         <h2>b\*\*\</h2>
                         <p>Challenge description or hint bl bla bla</p>
                         <div class="input-group">
-                            <label for="flag-3">Flag:</label>
-                            <input type="text" id="flag-3" name="b\*\*\" required>
+                            <input type="text" id="flag" name="flag" required>
+                            <input type="hidden" name="name" value="b\*\*\">
                         </div>
-                        <button class="button-submit" type="submit">Submit</button>
+                        <input class="button-submit" type="submit">Submit</input>
                     </div>
                 </div>
             </form>
@@ -92,9 +94,10 @@
                         <p>Challenge description or hint bl bla bla</p>
                         <div class="input-group">
                             <label for="flag-4">Flag:</label>
-                            <input type="text" id="flag-4" name="c\*\*\*\*\*" required>
+                            <input type="text" id="flag" name="flag" required>
+                            <input type="hidden" name="name" value="c\*\*\*\*\*">
                         </div>
-                        <button class="button-submit" type="submit">Submit</button>
+                        <input class="button-submit" type="submit">Submit</input>
                     </div>
                 </div>
             </form>
@@ -112,9 +115,10 @@
                         <p>Challenge description or hint bl bla bla</p>
                         <div class="input-group">
                             <label for="flag-5">Flag:</label>
-                            <input type="text" id="flag-5" name="e\*\*\" required>
+                            <input type="text" id="flag" name="flag" required>
+                            <input type="hidden" name="name" value="e\*\*\">
                         </div>
-                        <button class="button-submit" type="submit">Submit</button>
+                        <input class="button-submit" type="submit">Submit</input>
                     </div>
                 </div>
             </form>
@@ -133,9 +137,10 @@
                         <p>Challenge description or hint bl bla bla</p>
                         <div class="input-group">
                             <label for="flag-6">Flag:</label>
-                            <input type="text" id="flag-6" name="h\*\*\*\*\*" required>
+                            <input type="text" id="flag" name="flag" required>
+                            <input type="hidden" name="name" value="h\*\*\*\*\*">
                         </div>
-                        <button class="button-submit" type="submit">Submit</button>
+                        <input class="button-submit" type="submit">Submit</input>
                     </div>
                 </div>
             </form>
@@ -153,9 +158,10 @@
                         <p>Challenge description or hint bl bla bla</p>
                         <div class="input-group">
                             <label for="flag-7">Flag:</label>
-                            <input type="text" id="flag-7" name="Find the hidden login page" required>
+                            <input type="text" id="flag" name="flag" required>
+                            <input type="hidden" name="name" value="hFind the hidden login page">
                         </div>
-                        <button class="button-submit" type="submit">Submit</button>
+                        <input class="button-submit" type="submit">Submit</input>
                     </div>
                 </div>
             </form>
@@ -173,9 +179,10 @@
                         <p>Challenge description or hint bl bla bla</p>
                         <div class="input-group">
                             <label for="flag-8">Flag:</label>
-                            <input type="text" id="flag-7" name="Log into the hidden login page" required>
+                            <input type="text" id="flag" name="flag" required>
+                            <input type="hidden" name="name" value="Log into the hidden login page">
                         </div>
-                        <button class="button-submit" type="submit">Submit</button>
+                        <input class="button-submit" type="submit">Submit</input>
                     </div>
                 </div>
             </form>
@@ -193,9 +200,10 @@
                     <p>Challenge description or hint bl bla bla</p>
                     <div class="input-group">
                         <label for="flag-9">Flag:</label>
-                        <input type="text" id="flag-9" name="Log into hidden maintenance page" required>
+                        <input type="text" id="flag" name="flag" required>
+                        <input type="hidden" name="name" value="Log into hidden maintenance page">
                     </div>
-                    <button class="button-submit" type="submit">Submit</button>
+                    <input class="button-submit" type="submit">Submit</input>
                 </div>
             </div>
         </form>
@@ -213,9 +221,10 @@
                     <p>Challenge description or hint bl bla bla</p>
                     <div class="input-group">
                         <label for="flag-10">Flag:</label>
-                        <input type="text" id="flag-10" name="Et tu, brute?" required>
+                    <input type="text" id="flag" name="flag" required>
+                    <input type="hidden" name="name" value="Et tu, brute?">
                     </div>
-                    <button class="button-submit" type="submit">Submit</button>
+                    <input class="button-submit" type="submit">Submit</input>
                 </div>
             </div>
         </form>
@@ -233,9 +242,10 @@
                     <p>Challenge description or hint bl bla bla</p>
                     <div class="input-group">
                         <label for="flag-11">Flag:</label>
-                        <input type="text" id="flag-11" name="Did you read all the things?" required>
+                    <input type="text" id="flag" name="flag" required>
+                    <input type="hidden" name="name" value="Did you read all the things?">
                     </div>
-                    <button class="button-submit" type="submit">Submit</button>
+                    <input class="button-submit" type="submit">Submit</input>
                 </div>
             </div>
         </form>
@@ -253,9 +263,10 @@
                     <p>Which account is actually real? Tell us we'll give you the flag. You only get one shot!</p>
                     <div class="input-group">
                         <label for="flag-12">Flag:</label>
-                        <input type="text" id="flag-12" name="Invalid credentials" required>
+                    <input type="text" id="flag" name="flag" required>
+                    <input type="hidden" name="name" value="Invalid credentials">
                     </div>
-                    <button class="button-submit" type="submit">Submit</button>
+                    <input class="button-submit" type="submit">Submit</input>
                 </div>
             </div>
         </form>
@@ -273,9 +284,10 @@
                     <p>Challenge description or hint bl bla bla</p>
                     <div class="input-group">
                         <label for="flag-13">Flag:</label>
-                        <input type="text" id="flag-13" name="Social Network Scraping" required>
+                    <input type="text" id="flag" name="flag" required>
+                    <input type="hidden" name="name" value="Social Network Scraping">
                     </div>
-                    <button class="button-submit" type="submit">Submit</button>
+                    <input class="button-submit" type="submit">Submit</input>
                 </div>
             </div>
         </form>
@@ -293,9 +305,10 @@
                     <p>Challenge description or hint bl bla bla</p>
                     <div class="input-group">
                         <label for="flag-14">Flag:</label>
-                        <input type="text" id="flag-14" name="Can you crack this one?" required>
+                    <input type="text" id="flag" name="flag" required>
+                    <input type="hidden" name="name" value="Can you crack this one?">
                     </div>
-                    <button class="button-submit" type="submit">Submit</button>
+                    <input class="button-submit" type="submit">Submit</input>
                 </div>
             </div>
         </form>
@@ -313,9 +326,10 @@
                     <p>Challenge description or hint bl bla bla</p>
                     <div class="input-group">
                         <label for="flag-15">Flag:</label>
-                        <input type="text" id="flag-15" name="I'm a little teapot" required>
+                    <input type="text" id="flag" name="flag" required>
+                    <input type="hidden" name="name" value="I'm a little teapot">
                     </div>
-                    <button class="button-submit" type="submit">Submit</button>
+                    <input class="button-submit" type="submit">Submit</input>
                 </div>
             </div>
         </form>
