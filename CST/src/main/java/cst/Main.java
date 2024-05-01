@@ -41,7 +41,7 @@ public class Main {
 
 
     public record LoginRequest(String username, String password) {}
-    public record SubmitFlag(String id, String name) {}
+    public record SubmitFlag(String flag, String name) {}
 
     public record Flag(String name, String flag, int score) {}
     /**
@@ -109,7 +109,10 @@ public class Main {
     }
 
     @PostMapping("/submit_flag")
-    public String updateUser(HttpServletRequest request, HttpServletResponse response, @ModelAttribute SubmitFlag flag) throws IOException {
+    public String updateUser(HttpServletRequest request, HttpServletResponse response,  @RequestBody String payload) throws IOException {
+//    public String updateUser(HttpServletRequest request, HttpServletResponse response,  @ModelAttribute SubmitFlag flag) throws IOException {
+        System.out.println(payload);
+        SubmitFlag flag = new SubmitFlag(null,null);
         String token = findCookie(request, "user_token");
 
         if(userMap.containsKey(token)) {
@@ -117,7 +120,7 @@ public class Main {
             if(userObject.containsKey(username)) {
                 User user = userObject.get(username);
                 if(user.sessionID.equals(token)) {
-                    String result = user.addFlag(this, flag.name(), flag.id());
+                    String result = user.addFlag(this, flag.name(), flag.flag());
                     return new JSONObject().put("result", result).toString();
                 }
             }
