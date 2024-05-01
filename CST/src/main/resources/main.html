@@ -15,33 +15,32 @@
     <div>
         <button data-micromodal-trigger="modal-1" href='javascript:;'>Hello World!</button>
 
-                <div class="micromodal" id="modal-1" aria-hidden="true">
-                    <form action="/sumbit_flag" method="POST">
-                    <div class="micromodal__overlay" tabindex="-1">
-                        <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <div class="micromodal" id="modal-1" aria-hidden="true">
+            <form id="flag-form" action="/submit_flag" method="POST">
+                <div class="micromodal__overlay" tabindex="-1">
+                    <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
                         <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                            <h2>Hello World!</h2>
-                            <p> Challenge desciroption or hint bl bla bla </p>
-                            <div class="input-group">
-                                <label for="flag">Flag:</label>
-                                <input type="text" id="flag" name="Hello world!" required>
-                            </div>   
-                                <button class="button-submit" type="submit">Submit</button>
-                         </div>
-
-                            
+                        <h2>Hello World!</h2>
+                        <p> Challenge description or hint bla bla bla </p>
+                        <div class="input-group">
+                            <label for="flag">Flag:</label>
+                            <input type="text" id="flag" name="flag" required>
+                            <input type="hidden" name="challenge_name" value="Hello World!">
+                        </div>
+                        <input class="button-submit" type="submit"></input>
                     </div>
-                            
-                    </form>
                 </div>
+            </form>
+        </div>
     </div>
+
     
 
     <div>
         <button data-micromodal-trigger="modal-2" href='javascript:;'>a\*\*\*\*</button>
 
         <div class="micromodal" id="modal-2" aria-hidden="true">
-            <form action="/sumbit_flag" method="POST">
+            <form action="/submit_flag" method="POST">
                 <div class="micromodal__overlay" tabindex="-2">
                     <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-2-title">
                         <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
