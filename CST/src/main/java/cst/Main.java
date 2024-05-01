@@ -29,9 +29,9 @@ public class Main {
     public String message = users.toString();
     public RandomString randomString = new RandomString(32);
 
-    public String redirect = "http://localhost:8080/scores";
-    public String mainPage = "http://localhost:8080/digitized2024";
-    public String mainPage1 = "http://localhost:8080/main";
+    public String redirect = "http://stratus.usask.ca:8080/scores";
+    public String mainPage = "http://stratus.usask.ca:8080/digitized2024";
+    public String mainPage1 = "http://stratus.usask.ca:8080/main";
 
 
     public HashMap<String, Flag> flags = new HashMap<>();
