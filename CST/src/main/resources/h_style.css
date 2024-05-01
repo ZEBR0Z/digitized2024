@@ -1,0 +1,122 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-width: 100%;
+    margin: 0;
+}
+
+.button-grid {
+    display: grid;
+    height: 800px;
+    grid-template-columns: repeat(5, 3fr); /* Adjust the number of columns as needed */
+    grid-template-rows: repeat(5, 1fr);
+    gap: 5px;
+
+}
+
+
+.button-submit {
+    width: 70px;
+    height: 40px;
+    padding: 10px;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    
+}
+
+button {
+    display: block;
+    width: 280px;
+    height: 200px;
+    padding: 15px;
+    background-color: #670808;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+
+}
+
+div {
+
+    max-width: 100%;
+}
+
+.micromodal {
+    display: none;
+}
+
+.micromodal.is-open {
+    display: block;
+}
+
+.micromodal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.micromodal__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-width: 500px;
+    max-height: 100vh;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.micromodal[aria-hidden="false"] .micromodal__overlay {
+    animation: microModalFadeIn .2s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal[aria-hidden="false"] .micromodal__container {
+    animation: microModalSlideIn .2s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal .micromodal__container,
+.micromodal .micromodal__overlay {
+    will-change: transform;
+}
+
+@keyframes microModalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes microModalSlideIn {
+    from {
+        transform: translateY(15%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
