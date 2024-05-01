@@ -1,355 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="h_style.css">
-<!-- <script src="main.js"></script> -->
-<!-- TODO: ADD A LINK TO SCOREBOARD-->
 
 <head>
-    <meta charset="utf-8">
-    <title>Challenges</title>
+	<meta charset="utf-8">
+	<title>Challenges</title>
 </head>
 
 <body>
+	<a href="/scores">Scoreboard</a>
 
-    <a href="/scores">Scoreboard</a>
+	<template id="template">
+		<div class="challenge_container">
+			<button data-micromodal-trigger="" href='javascript:;'>Challenge Name</button>
+			<div class="micromodal" id="" aria-hidden="true">
+				<form action="/submit_flag" method="POST">
+					<div class="micromodal__overlay" tabindex="-1">
+						<div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+							<div class="right_align"><button class="red_button" data-micromodal-close></button></div>
+							<h2>Challenge Title</h2>
+							<p> Challenge Description </p>
+							<div class="input-group">
+								<label for="flag">Flag:</label>
+								<input type="text" id="flag" name="flag" required>
+								<input type="hidden" name="name" value="Challenge Name">
+							</div>
+							<input class="button-submit" type="submit"></input>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</template>
 
+	<div id="buttonGrid" class="button-grid"></div>
 
-<div class="button-grid">
-
-    <div>
-        <button data-micromodal-trigger="modal-1" href='javascript:;'>Hello World!</button>
-
-        <div class="micromodal" id="modal-1" aria-hidden="true">
-            <form action="/submit_flag" method="POST">
-                <div class="micromodal__overlay" tabindex="-1">
-                    <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-                        <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                        <h2>Hello World!</h2>
-                        <p> Go to /example.txt to see what a flag for this CTF looks like. </p>
-                        <div class="input-group">
-                            <label for="flag">Flag:</label>
-                            <input type="text" id="flag" name="flag" required>
-                            <input type="hidden" name="name" value="Hello World!">
-                        </div>
-                        <input class="button-submit" type="submit"></input>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    
-
-    <div>
-        <button data-micromodal-trigger="modal-2" href='javascript:;'>a\*\*\*\*</button>
-
-        <div class="micromodal" id="modal-2" aria-hidden="true">
-            <form action="/submit_flag" method="POST">
-                <div class="micromodal__overlay" tabindex="-2">
-                    <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-2-title">
-                        <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-
-                        <h2>a\*\*\*\*</h2>
-                        <p> Challenge desciroption or hint bl bla bla </p>
-                        <div class="input-group">
-                            <label for="flag">Flag:</label>
-                            <input type="text" id="flag" name="flag" required>
-                            <input type="hidden" name="name" value="a\*\*\*\*">
-                        </div>
-                        <input class="button-submit" type="submit"></input>
-                    </div>
-
-
-                </div>
-
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <button data-micromodal-trigger="modal-3" href='javascript:;'>b\*\*\</button>
-        <div class="micromodal" id="modal-3" aria-hidden="true">
-            <form action="/submit_flag" method="POST">
-                <div class="micromodal__overlay" tabindex="-3"  >
-                    <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-3-title">
-                        <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                        <h2>b\*\*\</h2>
-                        <p>Challenge description or hint bl bla bla</p>
-                        <div class="input-group">
-                            <input type="text" id="flag" name="flag" required>
-                            <input type="hidden" name="name" value="b\*\*\">
-                        </div>
-                        <input class="button-submit" type="submit"> </input>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <div>
-        <button data-micromodal-trigger="modal-4" href='javascript:;'>c\*\*\*\*\*</button>
-        <div class="micromodal" id="modal-4" aria-hidden="true">
-            <form action="/submit_flag" method="POST">
-                <div class="micromodal__overlay" tabindex="-4"  >
-                    <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-4-title">
-                        <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                        <h2>c\*\*\*\*\*</h2>
-                        <p>Challenge description or hint bl bla bla</p>
-                        <div class="input-group">
-                            <label for="flag-4">Flag:</label>
-                            <input type="text" id="flag" name="flag" required>
-                            <input type="hidden" name="name" value="c\*\*\*\*\*">
-                        </div>
-                        <input class="button-submit" type="submit"> </input>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <div>
-        <button data-micromodal-trigger="modal-5" href='javascript:;'>e\*\*\</button>
-        <div class="micromodal" id="modal-5" aria-hidden="true">
-            <form action="/submit_flag" method="POST">
-                <div class="micromodal__overlay" tabindex="-5"  >
-                    <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-5-title">
-                        <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                        <h2>e\*\*\</h2>
-                        <p>Challenge description or hint bl bla bla</p>
-                        <div class="input-group">
-                            <label for="flag-5">Flag:</label>
-                            <input type="text" id="flag" name="flag" required>
-                            <input type="hidden" name="name" value="e\*\*\">
-                        </div>
-                        <input class="button-submit" type="submit"> </input>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-    <div>
-        <button data-micromodal-trigger="modal-6" href='javascript:;'>h\*\*\*\*\*</button>
-        <div class="micromodal" id="modal-6" aria-hidden="true">
-            <form action="/submit_flag" method="POST">
-                <div class="micromodal__overlay" tabindex="-15"  >
-                    <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-6-title">
-                        <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                        <h2>h\*\*\*\*\*</h2>
-                        <p>Challenge description or hint bl bla bla</p>
-                        <div class="input-group">
-                            <label for="flag-6">Flag:</label>
-                            <input type="text" id="flag" name="flag" required>
-                            <input type="hidden" name="name" value="h\*\*\*\*\*">
-                        </div>
-                        <input class="button-submit" type="submit"> </input>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <div>
-        <button data-micromodal-trigger="modal-7" href='javascript:;'>Find the hidden login page</button>
-        <div class="micromodal" id="modal-7" aria-hidden="true">
-            <form action="/submit_flag" method="POST">
-                <div class="micromodal__overlay" tabindex="-7"  >
-                    <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-7-title">
-                        <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                        <h2>Find the hidden login page</h2>
-                        <p>Challenge description or hint bl bla bla</p>
-                        <div class="input-group">
-                            <label for="flag-7">Flag:</label>
-                            <input type="text" id="flag" name="flag" required>
-                            <input type="hidden" name="name" value="hFind the hidden login page">
-                        </div>
-                        <input class="button-submit" type="submit"> </input>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <button data-micromodal-trigger="modal-8" href='javascript:;'>Log into the hidden login page</button>
-        <div class="micromodal" id="modal-8" aria-hidden="true">
-            <form action="/submit_flag" method="POST">
-                <div class="micromodal__overlay" tabindex="-8"  >
-                    <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-8-title">
-                        <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                        <h2>Log into the hidden login page</h2>
-                        <p>Challenge description or hint bl bla bla</p>
-                        <div class="input-group">
-                            <label for="flag-8">Flag:</label>
-                            <input type="text" id="flag" name="flag" required>
-                            <input type="hidden" name="name" value="Log into the hidden login page">
-                        </div>
-                        <input class="button-submit" type="submit"> </input>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-<div>
-    <button data-micromodal-trigger="modal-9" href='javascript:;'>Log into hidden maintenance page</button>
-    <div class="micromodal" id="modal-9" aria-hidden="true">
-        <form action="/submit_flag" method="POST">
-            <div class="micromodal__overlay" tabindex="-9"  >
-                <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-9-title">
-                    <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                    <h2>Log into hidden maintenance page</h2>
-                    <p>Challenge description or hint bl bla bla</p>
-                    <div class="input-group">
-                        <label for="flag-9">Flag:</label>
-                        <input type="text" id="flag" name="flag" required>
-                        <input type="hidden" name="name" value="Log into hidden maintenance page">
-                    </div>
-                    <input class="button-submit" type="submit"> </input>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <button data-micromodal-trigger="modal-10" href='javascript:;'>Et tu, brute?</button>
-    <div class="micromodal" id="modal-10" aria-hidden="true">
-        <form action="/submit_flag" method="POST">
-            <div class="micromodal__overlay" tabindex="-10"  >
-                <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-10-title">
-                    <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                    <h2>Et tu, brute?</h2>
-                    <p>Challenge description or hint bl bla bla</p>
-                    <div class="input-group">
-                        <label for="flag-10">Flag:</label>
-                    <input type="text" id="flag" name="flag" required>
-                    <input type="hidden" name="name" value="Et tu, brute?">
-                    </div>
-                    <input class="button-submit" type="submit"> </input>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <button data-micromodal-trigger="modal-11" href='javascript:;'>Did you read all the things?</button>
-    <div class="micromodal" id="modal-11" aria-hidden="true">
-        <form action="/submit_flag" method="POST">
-            <div class="micromodal__overlay" tabindex="-11"  >
-                <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-11-title">
-                    <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                    <h2>Did you read all the things?</h2>
-                    <p>Challenge description or hint bl bla bla</p>
-                    <div class="input-group">
-                        <label for="flag-11">Flag:</label>
-                    <input type="text" id="flag" name="flag" required>
-                    <input type="hidden" name="name" value="Did you read all the things?">
-                    </div>
-                    <input class="button-submit" type="submit"> </input>
-                </div>
-            </div>
-        </form>
-        </div>
-    </div>
-   
-<div>
-    <button data-micromodal-trigger="modal-12" href='javascript:;'>Invalid credentials</button>
-    <div class="micromodal" id="modal-12" aria-hidden="true">
-        <form action="/submit_flag" method="POST">
-            <div class="micromodal__overlay" tabindex="-12"  >
-                <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-12-title">
-                    <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                    <h2>Invalid credentials</h2>
-                    <p>Which account is actually real? Tell us we'll give you the flag. You only get one shot!</p>
-                    <div class="input-group">
-                        <label for="flag-12">Flag:</label>
-                    <input type="text" id="flag" name="flag" required>
-                    <input type="hidden" name="name" value="Invalid credentials">
-                    </div>
-                    <input class="button-submit" type="submit"> </input>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <button data-micromodal-trigger="modal-13" href='javascript:;'>Social Network Scraping</button>
-    <div class="micromodal" id="modal-13" aria-hidden="true">
-        <form action="/submit_flag" method="POST">
-            <div class="micromodal__overlay" tabindex="-13"  >
-                <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-13-title">
-                    <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                    <h2>Social Network Scraping</h2>
-                    <p>Challenge description or hint bl bla bla</p>
-                    <div class="input-group">
-                        <label for="flag-13">Flag:</label>
-                    <input type="text" id="flag" name="flag" required>
-                    <input type="hidden" name="name" value="Social Network Scraping">
-                    </div>
-                    <input class="button-submit" type="submit"> </input>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <button data-micromodal-trigger="modal-14" href='javascript:;'>Can you crack this one?</button>
-    <div class="micromodal" id="modal-14" aria-hidden="true">
-        <form action="/submit_flag" method="POST">
-            <div class="micromodal__overlay" tabindex="-14"  >
-                <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-14-title">
-                    <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                    <h2>Can you crack this one?</h2>
-                    <p>Challenge description or hint bl bla bla</p>
-                    <div class="input-group">
-                        <label for="flag-14">Flag:</label>
-                    <input type="text" id="flag" name="flag" required>
-                    <input type="hidden" name="name" value="Can you crack this one?">
-                    </div>
-                    <input class="button-submit" type="submit"> </input>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <button data-micromodal-trigger="modal-15" href='javascript:;'>I'm a little teapot</button>
-    <div class="micromodal" id="modal-15" aria-hidden="true">
-        <form action="/submit_flag" method="POST">
-            <div class="micromodal__overlay" tabindex="-15"  >
-                <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-15-title">
-                    <div class="right_align"><button class="red_button" data-micromodal-close></button></div>
-                    <h2>I'm a little teapot</h2>
-                    <p>Challenge description or hint bl bla bla</p>
-                    <div class="input-group">
-                        <label for="flag-15">Flag:</label>
-                    <input type="text" id="flag" name="flag" required>
-                    <input type="hidden" name="name" value="I'm a little teapot">
-                    </div>
-                    <input class="button-submit" type="submit"> </input>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-</div>
-
-    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-    <script>
-        MicroModal.init();
-    </script>
-
-
-
-</div>
-    
+	<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+	<script src="main.js" async defer></script>
 </body>
 
 </html>

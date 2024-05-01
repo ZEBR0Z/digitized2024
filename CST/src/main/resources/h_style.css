@@ -10,18 +10,22 @@ body {
     color: #ffffff;
 }
 
+template {
+    display: none;
+}
+
 a {
     height: 20vh;
     width: 20vh;
     margin-top: 100px;
-    
 }
 
 
 .button-grid {
     display: grid;
     height: 800px;
-    grid-template-columns: repeat(5, 3fr); /* Adjust the number of columns as needed */
+    grid-template-columns: repeat(5, 3fr);
+    /* Adjust the number of columns as needed */
     grid-template-rows: repeat(5, 1fr);
     gap: 5px;
     padding: 30px;
@@ -51,16 +55,16 @@ a {
     width: 30px;
     height: 30px;
 
-    
+
 }
 
-.right_align
-{
+.right_align {
     display: flex;
     justify-content: flex-end;
     width: 100%;
- 
+
 }
+
 button {
     display: block;
     width: 280px;
@@ -78,7 +82,7 @@ button {
     border-radius: 40px;
     cursor: pointer;
     font-size: 30px;
-    font-weight:500;
+    font-weight: 500;
     text-align: center;
     transition: all 0.1s ease;
 }
@@ -113,8 +117,8 @@ div {
     align-items: center;
     background: rgba(0, 0, 0, 0.65);
     z-index: 998;
-    /* pointer-events: none;  This disables submit button*/
- 
+    height: 100vh;
+
 }
 
 .micromodal__container {
@@ -164,4 +168,3 @@ div {
         transform: translateY(0);
     }
 }
-
