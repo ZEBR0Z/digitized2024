@@ -3,8 +3,11 @@ body {
     width: 100vw;
     overflow-x: hidden;
     overflow-y: auto;
+    margin: 0;
     max-width: 100%;
     margin: 0;
+    background: linear-gradient(to right, #eff14d, #f082cb);
+    color: #ffffff;
 }
 
 .button-grid {
@@ -13,7 +16,8 @@ body {
     grid-template-columns: repeat(5, 3fr); /* Adjust the number of columns as needed */
     grid-template-rows: repeat(5, 1fr);
     gap: 5px;
-
+    padding: 30px;
+    padding-left: 90px;
 }
 
 
@@ -22,13 +26,17 @@ body {
     height: 40px;
     padding: 10px;
     background-color: green;
-    border: none;
-    border-radius: 5px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
     color: white;
     cursor: pointer;
     font-size: 16px;
     margin-top: 15px;
-    
+    transition: transform 0.3s ease;
+}
+
+.button-submit:hover {
+    transform: scale(1.1);
 }
 
 button {
@@ -36,21 +44,32 @@ button {
     width: 280px;
     height: 200px;
     padding: 15px;
-    background-color: #670808;
-    border: none;
-    border-radius: 40px;
-    color: white;
-    cursor: pointer;
-    font-size: 20px;
-    text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 15px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight:500;
+    text-align: center;
+    transition: all 0.1s ease;
+}
 
+button:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
 }
 
 div {
 
     max-width: 100%;
+    max-height: fit-content;
 }
 
 .micromodal {
@@ -71,6 +90,8 @@ div {
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.65);
+    /* pointer-events: none;  This disables submit button*/
+ 
 }
 
 .micromodal__container {
@@ -83,7 +104,7 @@ div {
     max-width: 500px;
     max-height: 100vh;
     padding: 30px;
-    background-color: #fff;
+    background-color: #ac49e6;
     border-radius: 4px;
 }
 
@@ -106,7 +127,7 @@ div {
     }
 
     to {
-        opacity: 1;
+        opacity: 3;
     }
 }
 
