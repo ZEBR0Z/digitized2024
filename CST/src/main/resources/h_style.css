@@ -10,6 +10,14 @@ body {
     color: #ffffff;
 }
 
+a {
+    height: 20vh;
+    width: 20vh;
+    margin-top: 100px;
+    
+}
+
+
 .button-grid {
     display: grid;
     height: 800px;
