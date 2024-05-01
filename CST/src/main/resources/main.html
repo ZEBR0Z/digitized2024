@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="h_style.css">
 
 <head>
 	<meta charset="utf-8">
 	<title>Challenges</title>
+	<link rel="stylesheet" href="h_style.css">
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
 </head>
 
 <body>
-	<a href="/scores">Scoreboard</a>
-
 	<template id="template">
 		<div class="challenge_container">
 			<button data-micromodal-trigger="" href='javascript:;'>Challenge Name</button>
@@ -17,7 +17,11 @@
 				<form action="/submit_flag" method="POST">
 					<div class="micromodal__overlay" tabindex="-1">
 						<div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-							<div class="right_align"><button class="red_button" data-micromodal-close></button></div>
+							<div class="right_align">
+								<button class="red_button" data-micromodal-close>
+									<i class="bi bi-x-circle"></i>
+								</button>
+							</div>
 							<h2>Challenge Title</h2>
 							<p> Challenge Description </p>
 							<div class="input-group">
@@ -33,7 +37,11 @@
 		</div>
 	</template>
 
+	<h1 class="title">Challenges</h1>
+
 	<div id="buttonGrid" class="button-grid"></div>
+
+	<a href="/scores">Scoreboard <i class="bi bi-bar-chart-fill"></i></a>
 
 	<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 	<script src="main.js" async defer></script>

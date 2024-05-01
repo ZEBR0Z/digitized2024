@@ -1,13 +1,17 @@
 body {
     height: 100vh;
     width: 100vw;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     margin: 0;
     max-width: 100%;
     margin: 0;
-    background: linear-gradient(to right, #eff14d, #f082cb);
+    background: #1a1a2e;
     color: #ffffff;
+    font-family: Jetbrains Mono;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 template {
@@ -15,36 +19,54 @@ template {
 }
 
 a {
+    text-align: center;
     height: 20vh;
     width: 20vh;
-    margin-top: 100px;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    transition: 0.1s;
 }
 
+a:hover {
+    text-shadow: rgba(255,255,255,0.9) 0px 0px 16px;
+}
+
+.title {
+    margin-top: 5rem;
+    color: #e0ca3c;
+    text-shadow: rgba(255,255,102,0.9) 0px 0px 27px;
+    font-size: 2.5rem;
+}
 
 .button-grid {
     display: grid;
     height: 800px;
     grid-template-columns: repeat(5, 3fr);
     /* Adjust the number of columns as needed */
-    grid-template-rows: repeat(5, 1fr);
-    gap: 5px;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 15px;
     padding: 30px;
-    padding-left: 90px;
 }
 
 
 .button-submit {
     width: 70px;
     height: 40px;
-    padding: 10px;
     background-color: green;
-    border: 2px solid #ffffff;
-    border-radius: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
     color: white;
     cursor: pointer;
     font-size: 16px;
     margin-top: 15px;
     transition: transform 0.3s ease;
+    font-family: Jetbrains Mono;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
 }
 
 .button-submit:hover {
@@ -52,10 +74,13 @@ a {
 }
 
 .red_button {
-    width: 30px;
-    height: 30px;
-
-
+    max-width: 0px;
+    height: 0px;
+    padding: 0;
+    text-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .right_align {
@@ -69,26 +94,24 @@ button {
     display: block;
     width: 280px;
     height: 200px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 15px;
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border-radius: 10px;
+    padding-block: 15px;
+    padding-inline: 30px;
+    box-shadow: 0 0px 8px rgba(255, 255, 255, 0.06);
+    background-color: #16213e;
+    border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    border: none;
-    border-radius: 40px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 30px;
+    font-size: 27px;
     font-weight: 500;
     text-align: center;
     transition: all 0.1s ease;
+    font-family: Jetbrains Mono;
+    color: white;
 }
 
 button:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0px 16px rgba(255, 255, 255, 0.1);
     transform: translateY(-5px);
 }
 
@@ -127,11 +150,13 @@ div {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     overflow-y: auto;
     max-width: 500px;
     max-height: 100vh;
     padding: 30px;
-    background-color: #ac49e6;
+    background-color: #0F3460;
     border-radius: 4px;
     z-index: 999;
 }
