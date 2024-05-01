@@ -111,14 +111,16 @@ public class Main {
        // SubmitFlag flag = new SubmitFlag(null,null);
         String token = findCookie(request, "user_token");
 
-        if(userMap.containsKey(token)) {
-            String username = userMap.get(token);
-            if(userObject.containsKey(username)) {
-                User user = userObject.get(username);
-                if(user.sessionID.equals(token)) {
-                    String result = user.addFlag(this, flag.name().trim(), flag.flag().trim());
-                    response.sendRedirect(mainPage1);
-                    return new JSONObject().put("result", result).toString();
+        if(token != null) {
+            if (userMap.containsKey(token)) {
+                String username = userMap.get(token);
+                if (userObject.containsKey(username)) {
+                    User user = userObject.get(username);
+                    if (user.sessionID.equals(token)) {
+                        String result = user.addFlag(this, flag.name().trim(), flag.flag().trim());
+                        response.sendRedirect(mainPage1);
+                        return new JSONObject().put("result", result).toString();
+                    }
                 }
             }
         }
@@ -132,17 +134,18 @@ public class Main {
         //JSONObject
         String token = findCookie(request, "user_token");
 
-        User user = getUser(token);
-        if(user != null) {
-            JSONArray jsonArray = new JSONArray();
-            for(String s : user.flags) {
-                jsonArray.put(s);
+        if(token != null) {
+            User user = getUser(token);
+            if (user != null) {
+                JSONArray jsonArray = new JSONArray();
+                for (String s : user.flags) {
+                    jsonArray.put(s);
+                }
+                return jsonArray.toString();
             }
-            return jsonArray.toString();
-        } else {
-            response.sendRedirect(mainPage);
-            return "[]";
         }
+        response.sendRedirect(mainPage);
+        return "[]";
     }
 
     public User getUser(String token) {
